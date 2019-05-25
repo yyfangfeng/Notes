@@ -74,12 +74,14 @@ npm install
 * **1、pm2** 启动，要确保本身下载了 **pm2**
 
 > 会出现两个文件夹，**log** 是打印日志，**pids** 是自定义应用程序的 **pid** 文件
+
 ```
 npm run pm2
 ```
-> 如果出现 cross-env: command not found
 
-> 说明服务器没有 cross-env 模块，所以需要安装一下 `npm install -g cross-env`
+* 如果出现 cross-env: command not found
+
+* 说明服务器没有 cross-env 模块，所以需要安装一下 `npm install -g cross-env`
 
 <br/>
 
