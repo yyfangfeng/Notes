@@ -58,6 +58,51 @@ npm init -y
 
 <br/>
 
+> 以下模块版本可以作为参考
+
+```
+// package.json
+
+{
+  "name": "vue-ssr-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+      ....
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.1",
+    "vue-server-renderer": "^2.6.10",
+    "vuex": "^3.1.0",
+    "vuex-router-sync": "^5.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^1.0.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.0.3",
+    "vue-loader": "^15.2.4",
+    "vue-style-loader": "^4.1.0",
+    "vue-template-compiler": "^2.6.10",
+    "vue-template-loader": "^1.0.0",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.0.8",
+    "webpack-merge": "^4.1.3"
+  }
+}
+```
+
+<br/>
+
 
 #### 四、先编写服务端渲染
 
