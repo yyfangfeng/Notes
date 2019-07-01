@@ -17,7 +17,7 @@ v10.15.3
 
 
 #### 一、首先新建一个文件夹 vue-ssr，然后初始化项目
-```	
+```	bash
 npm init -y
 ```
 <br/>
@@ -60,7 +60,7 @@ npm init -y
 
 > 以下模块版本可以作为参考
 
-```
+```json
 // package.json
 
 {
@@ -114,14 +114,14 @@ npm init -y
 
 **1、** 先安装 ***vue***、***vue-server-renderer***、***vue-router***、***express*** 模块
 
-```
+```bash
 npm install vue vue-server-renderer vue-router express --save
 ```
 <br/>
 
 **2.** 然后编写 `app.js` 公共入口文件代码，这是一个公共入口，可供客户端和服务端，里面是 **Vue** 实例
 
-```
+```javascript
 import Vue from "vue"
 import App from "./App.vue"
 
@@ -141,7 +141,7 @@ export function createApp () {
 
 
 **3.** 然后把 **App.vue** 文件编写一下
-```
+```html
 <template>
     <div class="app">
         <h1>欢迎来到VUE-SSR</h1>
@@ -167,7 +167,7 @@ export default {
 <br/>
 
 **5.** 编写 `entry-server.js` 文件
-```
+```javascript
 // 先引入 app.js 公共入口文件
 import { createApp } from "../src/app.js"
 
@@ -201,7 +201,7 @@ export default () => {
 
 > **7.1.** 先安装 ***webpack*** 、***vue-loader*** 、***babel*** 、***sass*** 的模块
 
-```
+```bash
 npm install webpack webpack-cli webpack-merge --save-dev
 
             vue-loader vue-template-loader vue-template-compiler
@@ -215,7 +215,7 @@ npm install webpack webpack-cli webpack-merge --save-dev
 
 > 下载了下面这个模块才可以使用路由按需加载，如果 **npm** 下载不了的话，可以使用 **cnpm** 下载
 
-```
+```bash
 cnpm install @babel/plugin-syntax-dynamic-import --save-dev
 ```
 <br/>
@@ -226,7 +226,7 @@ cnpm install @babel/plugin-syntax-dynamic-import --save-dev
 
 > 渲染 **css** 代码一定要使用 ***vue-style-loader*** 模块，不然会报错
 
-```  
+```javascript
 // webpack.common.js
 
 const path = require("path")
@@ -283,7 +283,7 @@ module.exports = {
 
 **8.** 然后配置 `webpack.server.js` 服务端代码打包配置
 
-```
+```javascript
 const merge = require("webpack-merge")
 const common = require("./webpack.common.js")
 const path = require("path")
@@ -310,14 +310,14 @@ module.exports = merge(common, {
 
 > **9.1.** 先安装服务端渲染需要的模块
 
-```
+```bash
 npm install vue-server-renderer express --save
 ```
 <br/>
 
 > **9.2.** 然后在根目录新建一个 `server.js` 文件，编写代码
 
-```
+```javascript
 const express = require("express")
 const server = express()
 
@@ -364,7 +364,7 @@ server.listen(8080, () => {
 #### 五、现在可以在 package.json 的 scripts 里添加代码
 
 > **1.** **package.json** 的 `scripts` 里添加代码
-```
+```json
 "scripts": {
     "build-server": "webpack --config build/webpack.server.js",
     "start": "node server.js"
@@ -373,7 +373,7 @@ server.listen(8080, () => {
 
 > **2.** 然后可以在终端里输入代码，运行项目了
 
-```
+```bash
 npm run build-server
 
 npm start
@@ -386,7 +386,7 @@ npm start
 
 > **1.** 先修改 **App.vue** 文件代码
 
-```
+```html
 · App.vue
 
 <template>
@@ -412,7 +412,7 @@ export default {
 
 > **2.** 然后在 **src** 目录里的 **components** 文件夹里新建 **Home.vue** 和 **Container.vue** 文件，编写代码
 			
-```
+```html
 · Home.vue
 
 <template>
@@ -428,7 +428,7 @@ export default {
 <style>
 </style>
 ```
-```
+```html
 · Container.vue
 
 <template>
@@ -448,7 +448,7 @@ export default {
 
 > **2.** 然后在 **src** 目录里新建一个 `router.js` 文件，编写代码
 
-```
+```javascript
 import Vue from "vue"
 import VueRouter from "vue-router"
 
@@ -476,7 +476,7 @@ export function createRouter () {
 
 > .... （此为省略代码）
 
-```
+```javascript
 .... (此为省略代码)
 		
 import { createRouter } from "./router.js"
@@ -497,7 +497,7 @@ export function createApp () {
 	
 > **4.** 在回到 `entry-server.js` 里修改代码
 
-```
+```javascript
 const { createApp } = require("../src/app.js")
 
 export default (context) => {
@@ -530,7 +530,7 @@ export default (context) => {
 	
 > **5.** 然后到 `server.js` 文件里修改代码
 
-```
+```javascript
 .... (省略代码)
 
 server.get("*", (req, res) => {
@@ -550,7 +550,7 @@ server.get("*", (req, res) => {
 
 > **6.** 现在就可以运行项目了
 
-```
+```bash
 npm run build-server
 
 npm start
@@ -563,7 +563,7 @@ npm start
 
 > **1.** 到 **entry** 文件夹里，编写 `entry-client.js` 文件
 
-```
+```javascript
 import { createApp } from "../src/app.js"
 
 const { app } = createApp()
@@ -577,7 +577,7 @@ router.onReady(() => {
 
 > **2.** 编写根目录的 **build** 文件夹里的 `webpack.client.js` 文件
 
-```
+```javascript
 const merge = require("webpack-merge")
 const common = require("./webpack.common.js")
 const path = require("path")
@@ -592,7 +592,7 @@ module.exports = merge(common, {
 
 > **3.** 然后再去根目录的 `package.json` 里面添加命令
 
-```
+```json
 "scripts": {
     ....
 
@@ -602,7 +602,7 @@ module.exports = merge(common, {
 
 > **4.** 客户端激活，再到根目录的 `server.js` 文件里添加代码
 
-```
+```javascript
 · 把打包的 js 代码放到 head ，因为 css 代码也会打包进 js 文件里
 
 · 所以为了避免页面渲染一开始会出现没有样式的页面，从而把 js 放在头部加载
@@ -647,7 +647,7 @@ server.get("*", (req, res) => {
 
 > **5.** 然后就可以运行项目查看效果了
 
-```
+```bash
 npm run build-client
 
 npm run build-server
@@ -668,7 +668,7 @@ npm start
 
 > 引入 `bootstrap.min.js` 还需要下载 `popper.js`、`jquery` 模块
 
-```
+```javascript
 npm install popper.js --save-dev
 
 npm install jquery --save
@@ -688,7 +688,7 @@ import "../src/assets/bootstrap/bootstrap.min.css"
 
 #### 九、使用 html 模板
 
-```
+```html
 · index.template.html
 
 <!DOCTYPE html>
@@ -707,8 +707,8 @@ import "../src/assets/bootstrap/bootstrap.min.css"
 </html>
 ```	
 
-```
-* server.js
+```javascript
+· server.js
 
 ....
 const renderer = createRenderer({
@@ -752,7 +752,7 @@ renderer.renderToString(app, temp, (err, html) => {
 
 #### 十、当需要判断当前环境是开发环境还是生产环境的话可以使用如下方法
 
-```
+```javascript
 * 在 js 文件里输入下面代码判断
 
 console.log(process.env.NODE_ENV)
@@ -778,13 +778,13 @@ let http = process.env.NODE_ENV === 'production'
 
 > **1、** 首先安装 **vuex** 模块
 
-```
+```bash
 npm install vuex --save
 ```
 <br/>
 
 > **2、** 然后再新建 `store.js` 文件
-```
+```javascript
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -802,7 +802,7 @@ export function createStore () {
 
 > **3、** 再去 `app.js` 文件里写代码
 
-```
+```javascript
 * 先安装 vuex-router-sync 模块
 
     npm install vuex-router-sync --save
@@ -839,7 +839,7 @@ export function createApp () {
 
 * **4.1、** 先新建一个 `api.js` 文件，输入代码
 
-```
+```javascript
 // 使用的预渲染请求需要 Promise
 export function getItem () {
     return new Promise((resolve, reject) => {
@@ -857,7 +857,7 @@ export function getItem () {
 
 * **4.2、** 然后再去 `store.js` 文件里添加代码
 
-```
+```javascript
 ...
 
 import { getItem } from "./api"
@@ -898,7 +898,7 @@ export function createStore () {
 
 * **4.3、** 到 `entry-server.js` 文件里添加预渲染的逻辑代码
 
-```
+```javascript
 ....
 
 export default (context) => {
@@ -934,7 +934,7 @@ export default (context) => {
 
 * **4.4、** 然后到 **Home.vue** 组件里调用
 
-```
+```html
 <template>
     <div class="home">
         <div>{{items}}</div>
@@ -962,7 +962,7 @@ export default {
 
 * **4.5、** 再去 `entry-client.js` 文件里添加代码
 
-```
+```javascript
 ....
 
 // 添加了这个代码，必须要在返回的 html 里添加服务端和客户端链接的数据
@@ -978,7 +978,7 @@ router.onReady(() => {
 		
 * **4.6、** 再去 `server.js` 文件里添加代码
 
-```
+```javascript
 ....
 
 // 模板需要的东西
@@ -1004,7 +1004,7 @@ let temp = {
 
 > **5、** 做客户端预渲染数据
 
-```
+```javascript
 · 在 entry-client.js 文件里输入代码
 
 			
@@ -1078,7 +1078,7 @@ router.onReady(() => {
 
 > **6、** 此时项目就可以启动了
 
-```
+```bash
 npm run build
 
 npm start
@@ -1092,14 +1092,14 @@ npm start
 
 > **1、** 安装 [***webpack-dev-middleware***](https://github.com/webpack/webpack-dev-middleware)、[***webpack-hot-middleware***](https://github.com/webpack-contrib/webpack-hot-middleware)
 
-```
+```bash
 npm install webpack-dev-middleware webpack-hot-middleware --save-dev
 ```
 <br/>
 
 > **2、** 然后在 **build** 目录里新建一个 `webpack.dev.js` 配置文件，用来配置热加载功能
 
-```
+```javascript
 const path = require("path")
 const merge = require("webpack-merge")
 const common = require("./webpack.common.js")
@@ -1124,7 +1124,7 @@ module.exports = merge(common, {
 
 > **3、** 然后在 **build** 目录里新建一个 `devServer.js` 文件，用来启动热加载服务
 
-```
+```javascript
 const express = require('express')
 const app = express()
 
@@ -1149,7 +1149,7 @@ app.listen(8080, () => {
 > **4、** 然后使用 [***http-proxy-middleware***](https://github.com/chimurai/http-proxy-middleware) 实现请求代理
 
 * **4.1.** 安装 ***http-proxy-middleware*** 插件
-```
+```bash
 * 不联网会报错
 
 npm install http-proxy-middleware --save-dev
@@ -1158,7 +1158,7 @@ npm install http-proxy-middleware --save-dev
 <br/>
 
 * **4.2.** 再在 `devServer.js` 文件里添加代理代码
-```
+```javascript
 ....
 
 const proxy = require("http-proxy-middleware")
@@ -1179,7 +1179,7 @@ app.use(proxy("/api", {
 
 > **5、** 设置完本地环境请求跨域之后，在 **src** 目录里新建 `config.js` 文件配置请求前缀
 
-```
+```javascript
 // 判断是开发模式的话就改成真实 api 地址
 
 let http = process.env.NODE_ENV === "production"
@@ -1196,7 +1196,7 @@ module.exports = {
 
 > **6、** 然后在某个 **vue** 文件里使用  `ajax`
 
-```
+```javascript
 import config from "./config.js"
 ....
 
@@ -1221,7 +1221,7 @@ mounted () {
 
 > **7、** 然后再到 **package.json** 里的 `scripts` 里添加代码
 
-```
+```javascript
 "scripts": {
     ....
 
@@ -1242,7 +1242,7 @@ mounted () {
 	
 > **1、** 到 `server.js` 文件里修改代码
 
-```
+```javascript
 ....
 
 const { createBundleRenderer } = require('vue-server-renderer')
@@ -1309,7 +1309,7 @@ setup-dev-server.js
 
 > **2、** 然后把里面需要修改的文件地址修改一下
 
-```
+```javascript
 const clientConfig = require('./webpack.client')
 const serverConfig = require('./webpack.server')
 ```
@@ -1319,7 +1319,7 @@ const serverConfig = require('./webpack.server')
 
 * *3.1、* 先引入需要用到的模块
 
-```
+```javascript
 const express = require('express')
 const app = express()
 const { createBundleRenderer } = require('vue-server-renderer')
@@ -1328,7 +1328,7 @@ const { createBundleRenderer } = require('vue-server-renderer')
 
 * **3.2、** 然后创建一个 **createRenderer** 函数，用于热加载动态刷新**createBundleRenderer** 配置
 
-```
+```javascript
 function createRenderer(bundle, options) {
     return createBundleRenderer(bundle, Object.assign(options, {
 
@@ -1345,7 +1345,7 @@ function createRenderer(bundle, options) {
 
 * **3.3、** 然后写热加载的 **promise** 函数，作用是可以等热加载完，在 **then** 里面做后续操作
 		
-```
+```javascript
 let renderer
 let readyPromise
 
@@ -1366,7 +1366,7 @@ readyPromise = require('./setup-dev-server')(
 
 * **3.4、** 然后再写启动服务代码
 		
-```
+```javascript
 app.get('*', (req, res) => {
     readyPromise.then(() => {
 
@@ -1394,7 +1394,7 @@ app.listen(8082, () => {
 
 * **3.5、** 然后在 **package.json** 里添加代码
 		
-```
+```json
 * cross-env 使用这个才可以设置环境变量
 
 npm install cross-env --save
@@ -1414,7 +1414,7 @@ npm install cross-env --save
 
 > **1、** 下载 [***lru-cache***](https://github.com/isaacs/node-lru-cache) 模块
 
-```
+```bash
 npm install lru-cache --save
 ```
 <br/>
@@ -1428,7 +1428,7 @@ npm install lru-cache --save
 
 * 针对用户点击多次刷新
 
-```
+```javascript
 ....
 
 // 删除最近最少使用条目的缓存对象
@@ -1479,7 +1479,7 @@ server.get("*", (req, res) => {
 
 #### 十六、package.json 里 scripts 配置说明
 
-```
+```json
 "scripts": {
     "build": cross-env NODE_ENV=production webpack --config webpack.server.js --progress --hide-modules
 }
@@ -1505,7 +1505,7 @@ server.get("*", (req, res) => {
 
 > **2、** 在 **modules** 文件夹里新建一个 `foo.js` 文件，添加代码
 
-```
+```javascript
 export default {
     namespaced: true,
 
@@ -1536,7 +1536,7 @@ export default {
 
 * 比如 home.vue
 
-```
+```html
 <template>
     <div class="home">
         <h1>{{fooCount}}</h1>
