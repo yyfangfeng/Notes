@@ -1394,7 +1394,7 @@ app.listen(8082, () => {
 
 * **3.5、** 然后在 **package.json** 里添加代码
 		
-```json
+```javascript
 * cross-env 使用这个才可以设置环境变量
 
 npm install cross-env --save
@@ -1479,7 +1479,7 @@ server.get("*", (req, res) => {
 
 #### 十六、package.json 里 scripts 配置说明
 
-```json
+```javascript
 "scripts": {
     "build": cross-env NODE_ENV=production webpack --config webpack.server.js --progress --hide-modules
 }
