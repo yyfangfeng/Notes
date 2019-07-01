@@ -60,7 +60,7 @@ npm init -y
 
 > 以下模块版本可以作为参考
 
-```json
+```javascript
 // package.json
 
 {
