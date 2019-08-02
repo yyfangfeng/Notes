@@ -43,7 +43,7 @@ npm init -y
 #### 三、ssr  所需要的模块
 
 **生产环境模块：**	
-> [***vue***](https://github.com/vuejs/vue)、[***vue-server-renderer***](https://www.npmjs.com/package/vue-server-renderer)、[***vue-router***](https://github.com/vuejs/vue-router)、[***express***](https://github.com/expressjs/express)
+> [***vue***](https://github.com/vuejs/vue)、[***vue-server-renderer***](https://www.npmjs.com/package/vue-server-renderer)、[***vue-router***](https://github.com/vuejs/vue-router)、[***express***](https://github.com/expressjs/express)、[***vuex***](https://github.com/vuejs/vuex)、[***vuex-router-sync***](https://github.com/vuejs/vuex-router-sync)
 
 **开发环境模块：**
 > [***babel-core***](https://www.npmjs.com/package/babel-core)、[***babel-loader***](https://github.com/babel/babel-loader)、[***babel-preset-env***](https://github.com/babel/babel-preset-env)
